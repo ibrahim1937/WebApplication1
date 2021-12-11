@@ -1,0 +1,43 @@
+﻿@page
+@model WebApplication1.Pages.LoanSimulatorModel
+@{
+
+    ViewData["Title"] = "Loan Simulator";
+    double result = 0;
+    string resulttext = Request.Cookies["result"];
+    if(resulttext != null)
+    {
+        result = double.Parse(resulttext);
+    }
+}
+
+
+<div>
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    <form method="post" action="">
+          <div class="mb-3 custom-form">
+            <label for="principal" class="form-label">Enter the Principal</label>
+            <input  class="form-control" id="principal" asp-for="@Model.pricipal"  name="principal"  type="number" required>
+          </div>
+          <div class="mb-3 custom-form">
+            <label for="interest" class="form-label">Enter the Interest</label>
+            <input  class="form-control" id="interest" name="interest" asp-for="@Model.interest" required>
+          </div>
+          <div class="mb-3 custom-form">
+            <label for="terms" class="form-label">Enter the number of Term</label>
+            <input  class="form-control" id="terms" name="terms" asp-for="@Model.terms" type="number" required>
+          </div>
+        
+            <div class="mb-3 custom-form">
+             <label for="result" class="form-label">Result</label>
+             <input  asp-for="@result" type="text">
+          </div>
+    
+          
+          <div class="mb-3">
+              <button type="submit"  class="btn btn-primary">Calculate</button>
+          </div>
+    </form> 
+    
+</div>

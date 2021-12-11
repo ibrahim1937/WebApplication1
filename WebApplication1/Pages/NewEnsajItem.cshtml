@@ -1,0 +1,58 @@
+﻿@page
+@model WebApplication1.Pages.NewEnsajItemModel
+@{
+    ViewData["Title"] = "Formulaire max min";
+
+    string maxtext = "";
+    string mintext = "";
+    int result = 0;
+    string max = Request.Cookies["max"];
+    string min = Request.Cookies["min"];
+    string resulttext = Request.Cookies["result"];
+    if(max != null)
+    {
+        maxtext = $"The max number is {max}";
+    }
+    if(min != null)
+    {
+        mintext = $"The min number is {min}";     
+    }
+
+    if(resulttext != null)
+    {
+        result = int.Parse(resulttext);
+    }
+
+
+}
+<div>
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    <form method="post" action="">
+          <div class="mb-3 custom-form">
+            <label for="number1" class="form-label">Enter first Number</label>
+            <input  class="form-control" id="number1" asp-for="@Model.number1" name="number1" required>
+          </div>
+          <div class="mb-3 custom-form">
+            <label for="number2" class="form-label">Enter second Number</label>
+            <input  class="form-control" id="number2" name="number2" asp-for="@Model.number2" required>
+          </div>
+        
+
+            <div class="mb-3 custom-form">
+             <label for="result" class="form-label">Result</label>
+             <input  asp-for="@result" type="text">
+          </div>
+    
+          
+          <div class="mb-3">
+              <button type="submit" value="max" name="operation" class="btn-primary btn-info" id="max">Max</button>
+              <button type="submit" value="min" name="operation" class="btn-primary btn-info" id="min">Min</button>
+          </div>
+    </form>
+
+    <p class="text-success">@maxtext</p>
+    <p class="text-success">@mintext</p>
+    
+    
+</div>
